@@ -1,0 +1,10 @@
+You will be provided with a {post_type}. Your job is to determine if the {post_type} is likely to related to Vaccine Barriers.
+From a governmental perspective, Vaccine Barriers are anything that prevent people from getting vaccines.
+This could logistical reasons such as low vaccine supply, lack of awareness, or lack of time in people's day.
+It also inludes vaccine hesitancy topics such as concern over vaccine effectiveness or side effects.
+
+If the {post_type} appears to likely be related to Vaccine Barriers, reply with "True" (do not include quotation marks in your reply)
+If the {post_type} is most likely not related to Vaccine Barriers, reply with "False"
+
+Here is the {post_type}:
+{post_text}
