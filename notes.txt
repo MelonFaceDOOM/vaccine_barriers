@@ -1,0 +1,37 @@
+vaccine barriers categories: hesitancy, side effects, efficacy, conspiracy, availability, distance, remote, 
+number of posts/time, metrics
+cgpt query on reddit submission titles categorizing into a categories
+verify results
+
+10k submissions were acquired from db
+titles given to cgpt and categories placed on them
+manually labeled 400
+finish cleaning up 400 labels
+compute accuracy ratings
+make other prompts, make training set, re-label those 400, and compute ratings across diff approaches
+	3.5 with diff prompt
+	best 3.5 prompt + training on 20
+	best 3.5 prompt + training on 100
+	4.0
+choose best rating and use on all 10,000 (cost dependent)
+do analysis
+
+
+general notes:
+n can include irony
+logistics includes availability, approvals, govt planning, supply chain issues, local availability, opinions on how vaccines should be distributed. anything affecting how vaccines will flow and be available. It doesn't include updates on vaccination count. also includes spillage/waste/inefficiencies
+General include updates on rates, case counts, vaccination counts
+Rejected means not related to human vaccination
+
+look into now:
+replace side effects with safety
+may need to review side effects and add more negative labels
+could be some l=False where there is vaccine policy discussed that should make it True
+n = true and rest = false. this should be "general negativity that isn't described by any other category"
+
+look into later: 
+g,h includes pleads for vaccination that could be studied on its own
+g,h includes should i get vaccinated which is another intersting category esp if you look at comments
+
+finished:
+looking at logistics or mandates = True and fixed up their negative labels. l/m=False hasn't been looked at tho.

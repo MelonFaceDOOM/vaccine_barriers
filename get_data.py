@@ -5,8 +5,8 @@ from psycopg2.extras import RealDictCursor
 from config import VSM_CREDENTIALS
 
 def main():
-    get_other_data()
-    
+   get_samples()
+
 def get_samples():
     """get representative sample of tweets & reddit submissions"""
     conn = psycopg2.connect(**VSM_CREDENTIALS)

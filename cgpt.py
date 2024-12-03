@@ -8,9 +8,28 @@ OPENAI_CLIENT = OpenAI(api_key=OPENAI_API_KEY)
 JOB_DESCRIPTION = open("job_description.txt", 'r').read()
 PROMPT_TEMPLATE = open("prompt_template.txt").read()
 
-
+def label_vaccine_barriers():
+    """labels vaccine barrier categories on reddit submissions titles."""
+    output = "reddit_submissions_vaccine_barriers.csv"
+    prompt_template = open("prompt_barrier_categories.txt", 'r', encoding="utf-8").read()
+    df = pd.read_csv("reddit_submissions_10k.csv", encoding='utf-8')
+    if os.path.isfile(output):
+        already_completed = pd.read_csv(output, encoding="utf-8")
+        df = df[~df['id'].isin(already_completed['id'].to_list())]
+    for index, row in df.iterrows():
+        post_text = row['title']
+        formatting_text = {"post_type": "reddit submission title",
+                           "post_text": post_text}
+        formatted_prompt = prompt_template.format(**formatting_text)
+        response = single_prompt_response(formatted_prompt)
+        if index % 100 == 0:
+            print(index)
+            print(formatted_prompt)
+            print("CHAT GPT RESPONSE:", response)
+        row['cgpt_response'] = response
+        row_dict = row.to_dict()        
+        save_results_to_file(output, row_dict)
 def call_cgpt():
-    # todo truncate reddit comment
     for input_filename, output_filename, post_type, post_text_column in [
         ("tweets_10k.csv", "tweets_10k_labeled.csv", "tweet", "tweet_text"),
         ("reddit_submissions_10k.csv", "reddit_submissions_10k_labeled.csv", "reddit submission title", "title"),
@@ -67,4 +86,5 @@ def save_results_to_file(file_path, row_dict):
 
         
 if __name__ == "__main__":
-    call_cgpt()
+    label_vaccine_barriers()
+

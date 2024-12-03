@@ -1,0 +1,8 @@
+You will be provided with a {post_type}. Your job is to determine which category the {post_type} belongs to. The categories are:
+- Poor or underperforming vaccine efficacy
+- Excessive vaccine side effects
+- Lack of vaccine availability
+- Other
+
+Here is the {post_type}:
+{post_text}
